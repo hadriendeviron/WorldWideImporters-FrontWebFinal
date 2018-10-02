@@ -1,0 +1,41 @@
+button{
+    background-color: black;
+    color: antiquewhite;
+    border: 3px antiquewhite solid;
+    width: 450px;
+    height: 100px;
+    border-radius: 5px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+button:hover{
+    background-color: antiquewhite;
+    color: black;
+}
+
+main{
+    background-color: black;
+    height: 100vh;
+}
+
+.shoppingbutton-container{
+    margin-top: 20vh;
+}
+
+.main-content{
+    padding-top: 150px;
+}
+
+.featureditem-img{
+    height: 400px;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.featureditem-name{
+    color: antiquewhite;
+    z-index: 2;
+    position: absolute;
+    font-size: 3em;
+}

@@ -1,0 +1,17 @@
+<main>
+  <section class="main-content">
+    <p-carousel headerText="Featured" [value]="items">
+      <ng-template let-item pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+            <div class="ui-grid-row">
+              <img class="featureditem-img" src="{{item.imagelink}}">
+              <h3 class="featureditem-name">{{item.name}}</h3>
+            </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+    <div class="shoppingbutton-container">
+    <button>Go Shopping</button>
+    </div>
+  </section>
+</main>
