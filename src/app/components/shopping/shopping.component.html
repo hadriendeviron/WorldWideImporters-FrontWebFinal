@@ -1,0 +1,29 @@
+<main>
+  <div style="height:150px"></div>
+  <div>
+      <form (ngSubmit)="sortFilter()"> 
+        <label for="sortbyPrice">Sort by price</label><input type="checkbox" name="sortbyPrice" [(ngModel)]="filterSortProducts.sortByPrice"/>
+        <label for="maxPrice">Max Price</label><input type="number" name="maxPrice" [(ngModel)]="filterSortProducts.maxPrice"/>
+        <label for="showOnlyAvailable">Show only available</label><input type="checkbox" name="ShowOnlyAvailable" [(ngModel)]="filterSortProducts.stockedOnly"/>
+        <button type="submit">Filter</button>
+      </form>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <ngb-accordion #acc="ngbAccordion">
+          <ngb-panel *ngFor="let category of categories;let i=index" id="toggle-{{i}}" title="{{category.category}}">
+            <ng-template ngbPanelContent>
+              <ul>
+                <li *ngFor="let subcategory of category.subcategories;"><a (click)='selectSubcategory(subcategory);'>{{subcategory.name}}</a></li>
+              </ul>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+      <div class="col-md-10" *ngIf="displayedItems">
+        <div class="row">
+        <div class="col-md-4" *ngFor="let product of displayedItems">{{product.name}}</div>
+        </div>
+      </div>
+      </div>
+<main>

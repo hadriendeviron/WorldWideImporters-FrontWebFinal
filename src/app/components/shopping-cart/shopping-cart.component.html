@@ -1,0 +1,15 @@
+<main>
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class="row" *ngFor='let article in shoppingCart;'>
+        <div class="col-md-2"><img [src]='article.product.imagelink'></div>
+        <div class="col-md-2">{{article.product.name}}</div>
+        <div class="col-md-2">{{article.product.price}}</div>
+        <div class="col-md-2"><input class="form-control" type="number" [(ng-model)]="article.product.quantity"/></div>
+        <div class="col-md-2">{{article.product.price*article.product.quantity}}</div>
+        <div class="col-md-2"><a aria-label="delete" class="" (click)="remove(article)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
+      </div>
+    </div>
+    <div class="col-md-6"></div>
+  </div>
+</main>

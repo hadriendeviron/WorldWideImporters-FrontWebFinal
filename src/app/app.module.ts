@@ -5,13 +5,21 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import {CarouselModule} from 'primeng/carousel';
 import { HttpClientModule } from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ShoppingComponent } from './components/shopping/shopping.component';
+import { FormsModule } from '@angular/forms';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { PersistenceModule } from 'angular-persistence';
 
 const appRoutes: Routes = [
   {
     path:'',
-    component:HomePageComponent
+    component:HomePageComponent,
+    pathMatch: 'full'
+  },{
+    path:'shopping',
+    component:ShoppingComponent
   }
 ]
 
@@ -20,15 +28,19 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomePageComponent
+    HomePageComponent,
+    ShoppingComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgbModule,
     RouterModule.forRoot(
       appRoutes
     ),
-    CarouselModule
+    FormsModule,
+    PersistenceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,17 +1,20 @@
 <main>
   <section class="main-content">
-    <p-carousel headerText="Featured" [value]="items">
-      <ng-template let-item pTemplate="item">
-        <div class="ui-grid ui-grid-responsive">
-            <div class="ui-grid-row">
-              <img class="featureditem-img" src="{{item.imagelink}}">
-              <h3 class="featureditem-name">{{item.name}}</h3>
-            </div>
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let item of items; let i = index">
+        <div class="carousel-item-container">
+        <img class="featureditem-img" [src]="item.imagelink" alt="Random first slide">
+        <div class="carousel-caption featureditem-name">
+          <h3>{{item.name}}</h3>
+          <p>Only {{item.price}}$</p>
         </div>
+      </div>
       </ng-template>
-    </p-carousel>
+    </ngb-carousel>
     <div class="shoppingbutton-container">
+      <a routerLink="/shopping" routerLinkActive="active">
     <button>Go Shopping</button>
-    </div>
+  </a>
+  </div>
   </section>
 </main>
