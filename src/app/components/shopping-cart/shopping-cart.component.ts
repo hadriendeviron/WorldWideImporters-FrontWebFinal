@@ -8,19 +8,12 @@ import { Article } from '../../interfaces/article';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit, OnChanges {
-  ngOnChanges(changes: SimpleChanges): void {
-    if(changes['shoppingCart'])
-    {
-      this.subtotal=this.shoppingCart.map(a=>a.quantity*a.product.price).reduce((p1,p2)=>p1+p2);
-      this.Tax=this.subtotal*0.1;
-      this.Total=this.subtotal+this.shipping+this.Tax;
-    }
-  }
+
   shoppingCart: Article[];
   subtotal:number;
   shipping:number=10;
-  Tax:number;
-  Total:Number;
+  tax:number;
+  total:Number;
 
   constructor(shoppingCartService:ShoppingCartService) { 
     this.shoppingCart=shoppingCartService.shoppingCart;
@@ -30,5 +23,13 @@ export class ShoppingCartComponent implements OnInit, OnChanges {
     
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['shoppingCart'])
+    {
+      this.subtotal=this.shoppingCart.map(a=>a.quantity*a.product.price).reduce((p1,p2)=>p1+p2);
+      this.tax=this.subtotal*0.1;
+      this.total=this.subtotal+this.shipping+this.tax;
+    }
+  }
 
 }

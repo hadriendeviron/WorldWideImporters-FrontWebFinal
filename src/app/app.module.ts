@@ -11,15 +11,21 @@ import { ShoppingComponent } from './components/shopping/shopping.component';
 import { FormsModule } from '@angular/forms';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { PersistenceModule } from 'angular-persistence';
+import { ProductComponent } from './components/product/product.component';
 
 const appRoutes: Routes = [
   {
     path:'',
-    component:HomePageComponent,
-    pathMatch: 'full'
+    component:HomePageComponent
   },{
     path:'shopping',
     component:ShoppingComponent
+  },{
+    path:'cart',
+    component:ShoppingCartComponent
+  },{
+    path:'product/:name',
+    component:ProductComponent
   }
 ]
 
