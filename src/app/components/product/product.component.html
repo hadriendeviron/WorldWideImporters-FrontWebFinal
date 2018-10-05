@@ -1,3 +1,20 @@
-<p>
-  product works!
-</p>
+<main *ngIf='article' class="row container-fluid pt-4">
+  <div class="col-md-6">
+    <div class="card" style="height: 75vh;"><img class="card-img img-fluid my-auto" [src]="article.product.imagelink"></div>
+  </div>
+  <div class="col-md-6">
+    <div class="card" style="height: 75vh;">
+      <form class="card-body row h-100 justify-content-around" (ngSubmit)="addToCart();">
+        <div class="col-8 card my-auto">{{article.product.name}}</div>
+        <div class="col-8 card my-auto">{{article.product.rating}}</div>
+        <div class="col-8 card my-auto">{{article.product.price}}</div>
+        <div class="col-8 card my-auto">{{article.product.description}}</div>
+        <div class="col-12 form-group form-check my-auto">
+          <label for="quantity">Quantity :</label>
+          <input type="number" name="quantity" [(ngModel)]="article.quantity">
+        </div>
+        <button type="submit" class="col-7 my-auto btn btn-primary">Add To Cart</button>
+      </form>
+    </div>
+  </div>
+</main>

@@ -15,12 +15,13 @@ export class ShoppingCartComponent implements OnInit, OnChanges {
   tax:number;
   total:Number;
 
-  constructor(shoppingCartService:ShoppingCartService) { 
-    this.shoppingCart=shoppingCartService.shoppingCart;
+  constructor(private shoppingCartService:ShoppingCartService) { 
+
   }
 
   ngOnInit() {
-    
+    this.shoppingCart=this.shoppingCartService.shoppingCart;
+    this.shoppingCart.forEach(a => console.log("a : "+a.product.name));
   }
 
   ngOnChanges(changes: SimpleChanges): void {

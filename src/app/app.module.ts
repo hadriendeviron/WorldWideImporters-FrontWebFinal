@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { PersistenceModule } from 'angular-persistence';
 import { ProductComponent } from './components/product/product.component';
+import { ProductListService } from './services/product-list.service';
+import { ShoppingCartService } from './services/shopping-cart.service';
 
 const appRoutes: Routes = [
   {
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     FooterComponent,
     HomePageComponent,
     ShoppingComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ const appRoutes: Routes = [
     FormsModule,
     PersistenceModule
   ],
-  providers: [],
+  providers: [ProductListService, ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

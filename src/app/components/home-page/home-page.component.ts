@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductListService } from '../../services/product-list.service';
+
 import { Product } from '../../interfaces/product';
-import { Category } from '../../interfaces/category';
+import { ProductListService } from '../../services/product-list.service';
 
 @Component({
   selector: 'app-home-page',
@@ -18,7 +18,6 @@ export class HomePageComponent implements OnInit {
     this.productsSearch.getAll().subscribe((response)=>{
 
       response.forEach(r=>r.subcategories.forEach(s=>this.items=this.items.concat(s.items.filter(i=>i.isFeatured))))
-      console.log(this.items)
     })
   }
 

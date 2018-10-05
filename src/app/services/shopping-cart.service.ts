@@ -11,7 +11,8 @@ export class ShoppingCartService {
   shoppingCart:Array<Article>;
 
   constructor(private persistenceService:PersistenceService) {
-        persistenceService.defineProperty<Array<Article>>(this,'shoppingCart', 'shoppingCartProperty' ,{type: StorageType.SESSION});
+        // this.persistenceService.defineProperty<Array<Article>>(this,'shoppingCart', 'shoppingCartProperty' ,{type: StorageType.SESSION});
+        this.shoppingCart=new Array<Article>();
     
    }
 
@@ -19,6 +20,7 @@ export class ShoppingCartService {
     let curArt=this.shoppingCart.find(a=>a.product.name===article.product.name);
     if(curArt)
       curArt.quantity+=article.quantity;
+    else
       this.shoppingCart.push(article);
     }
 
