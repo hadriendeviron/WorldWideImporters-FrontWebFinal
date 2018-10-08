@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import {PersistenceService, StorageType, IPersistenceContainer} from 'angular-persistence';
 import { Article } from '../interfaces/article';
-import { container } from '@angular/core/src/render3/instructions';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +8,8 @@ export class ShoppingCartService {
 
   shoppingCart:Array<Article>;
 
-  constructor(private persistenceService:PersistenceService) {
-        // this.persistenceService.defineProperty<Array<Article>>(this,'shoppingCart', 'shoppingCartProperty' ,{type: StorageType.SESSION});
-        this.shoppingCart=new Array<Article>();
-    
+  constructor() {
+    this.shoppingCart=new Array<Article>();
    }
 
   addToShoppingCart(article:Article){
@@ -25,6 +21,7 @@ export class ShoppingCartService {
     }
 
     getShoppingCart(){
+      console.log("shop is "+typeof(this.shoppingCart));
       return this.shoppingCart;
     }
 }

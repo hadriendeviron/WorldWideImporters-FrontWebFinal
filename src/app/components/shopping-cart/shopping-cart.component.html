@@ -1,38 +1,48 @@
 <main>
-  <div class='row container-fluid mt-4'>
-    <div class='col-md-6'>
-      <div class="card" *ngFor='let article of shoppingCart;'>
-        <div class="card-body row">
-          <div class="col-md-2"><img class="img-thumbnail" [src]='article.product.imagelink'></div>
-          <div class="col-md-2">{{article.product.name}}</div>
-          <div class="col-md-2">{{article.product.price}}</div>
-          <div class="col-md-2"><input class="form-control" type="number" /></div>
-          <div class="col-md-2">{{article.product.price*article.quantity}}</div>
-          <div class="col-md-2"><a aria-label="delete" class="" (click)="remove(article)"><span class="glyphicon glyphicon-remove"
-                aria-hidden="true"></span></a></div>
+  <div *ngIf="shoppingCart?.length>0; else empty_cart" class='row container-fluid mt-4'>
+    <div class='col-md-8'>
+      <form  (ngSubmit)="calculateCart()">
+        <div class="card my-2" *ngFor='let article of shoppingCart; let i=index'>
+          <div class="card-body row">
+            <div class="col-md-2 my-auto"><img class="img-thumbnail" [src]='article.product.imagelink'></div>
+            <div class="col-md-2 my-auto">{{article.product.name}}</div>
+            <div class="col-md-2 my-auto">{{article.product.price}}$</div>
+            <div class="col-md-2 my-auto"><input class="form-control" name="{{article.product.name}}" type="number" [(ngModel)]="article.quantity"/></div>
+            <div class="col-md-2 my-auto">{{(article.product.price*article.quantity)|number:'1.0-2'}}$</div>
+            <button type="button" class="col-md-2 close" (click)="remove(i)">&times;
+            </button>
+          </div>
         </div>
-      </div>
+        <div>
+          <button type="submit" class="btn btn-dark">Calculate Price</button>
+        </div>
+      </form>
     </div>
-    <div class="col-md-6 card">
+    <div class="col-md-4 card">
       <div class="card-body">
         <h2 class="card-title">Cart Summary</h2>
-        <div class="row">
-          <div class="col-md-4 mb-3">Subtotal</div>
-          <div class="col-md-8">{{subtotal}}</div>
+        <div class="row mb-3">
+          <div class="col-md-8">Subtotal</div>
+          <div class="col-md-4">{{subtotal}}</div>
         </div>
-        <div class="row">
-          <div class="col-md-4 mb-3">Shipping</div>
-          <div class="col-md-8">{{shipping}}</div>
+        <div class="row mb-3">
+          <div class="col-md-8">Shipping</div>
+          <div class="col-md-4">{{shipping}}</div>
         </div>
-        <div class="row">
-          <div class="col-md-4 mb-3">Tax</div>
-          <div class="col-md-8">{{tax}}</div>
+        <div class="row mb-3">
+          <div class="col-md-8">Tax</div>
+          <div class="col-md-4">{{tax}}</div>
         </div>
-        <div class="row">
-          <div class="col-md-4 mb-3">Total</div>
-          <div class="col-md-8">{{total}}</div>
+        <div class="row mb-3">
+          <div class="col-md-8">Total</div>
+          <div class="col-md-4">{{total}}</div>
         </div>
       </div>
     </div>
   </div>
+  <ng-template template #empty_cart>
+    <div class="container-fluid">
+      <div class="card my-4 col-12">Your Shoppingcart is empty</div>
+    </div>
+  </ng-template>
 </main>

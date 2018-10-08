@@ -10,23 +10,31 @@ import { Article } from '../../interfaces/article';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
+  
+
 
   constructor(private productListService:ProductListService,private route: ActivatedRoute, private router: Router, private cartService:ShoppingCartService) { }
 
   article:Article
+  loading: boolean
 
   ngOnInit() {
+    this.loading=true;
+    console.log("start loading")
     this.route.paramMap.subscribe((params: ParamMap) => {
     this.productListService.get(params.get('name')).subscribe((response)=>{
-      console.log("here i am"+response);
+      console.log("stop loading")
+      this.loading=false;
       this.article={product:response, quantity:0}
+    
+  
     });
     
     })
   }
 
   addToCart(){
-    this.cartService.addToShoppingCart(this.article)
+    if(this.article.quantity)this.cartService.addToShoppingCart(this.article)
   }
 
 }

@@ -1,5 +1,5 @@
-<main>
-  <div class="card">
+<main class="container-fluid">
+  <div class="card my-4">
     <div class="card-body">
       <form class="form-inline" (ngSubmit)="sortFilter()">
         <label class="mr-sm-2" for="maxPrice">Max Price :</label><input class="form-control mb-2 mr-sm-2" type="number"
@@ -18,11 +18,11 @@
   </div>
   <div class="container-fluid row mt-4 mb-4">
     <div class="col-md-4">
-      <ngb-accordion #acc="ngbAccordion">
+      <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
         <ngb-panel *ngFor="let category of categories;let i=index" id="toggle-{{i}}" title="{{category.category}}">
           <ng-template ngbPanelContent>
             <div class="list-group">
-              <a class="list-group-item" *ngFor="let subcategory of category.subcategories;" (click)='selectSubcategory(subcategory);'>{{subcategory.name}}</a>
+              <a class="list-group-item list-group-item-action" *ngFor="let subcategory of category.subcategories;" (click)='selectSubcategory(subcategory);'>{{subcategory.name}}</a>
             </div>
           </ng-template>
         </ngb-panel>
@@ -30,7 +30,7 @@
     </div>
     <div class="col-md-8" *ngIf="displayedItems">
       <div class="container-fluid row">
-        <div class="col-md-4" *ngFor="let product of displayedItems">
+        <div class="col-lg-4 col-sm-6" *ngFor="let product of displayedItems">
           <div class="card"><a routerLink="/product/{{product.name}}" routerLinkActive="active"><img class="card-img-top img-fluid"
                 [src]="product.imagelink" style="height:250px;" alt="Card image">
               <div class="card-img-overlay">

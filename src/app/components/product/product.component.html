@@ -1,20 +1,51 @@
-<main *ngIf='article' class="row container-fluid pt-4">
+<main *ngIf='article?.product; else isLoading'>
+  <div class="row container-fluid my-4">
   <div class="col-md-6">
-    <div class="card" style="height: 75vh;"><img class="card-img img-fluid my-auto" [src]="article.product.imagelink"></div>
+    <div class="card" style="height: 75vh;"><img class="card-img img-fluid my-auto" style="max-height:75vh;" [src]="article.product.imagelink"></div>
   </div>
   <div class="col-md-6">
     <div class="card" style="height: 75vh;">
       <form class="card-body row h-100 justify-content-around" (ngSubmit)="addToCart();">
-        <div class="col-8 card my-auto">{{article.product.name}}</div>
-        <div class="col-8 card my-auto">{{article.product.rating}}</div>
-        <div class="col-8 card my-auto">{{article.product.price}}</div>
-        <div class="col-8 card my-auto">{{article.product.description}}</div>
-        <div class="col-12 form-group form-check my-auto">
-          <label for="quantity">Quantity :</label>
-          <input type="number" name="quantity" [(ngModel)]="article.quantity">
+        <div class="col-md-8 card my-auto">{{article.product.name}}</div>
+        <div class="col-md-8 card my-auto container d-flex flex-row justify-content-center text-warning">
+          <div [ngClass]='article.product.rating>0?"fa-star":"fa-star-o"' class="fa"></div>
+          <div [ngClass]='article.product.rating>1?"fa-star":"fa-star-o"' class="fa"></div>
+          <div [ngClass]='article.product.rating>2?"fa-star":"fa-star-o"' class="fa"></div>
+          <div [ngClass]='article.product.rating>3?"fa-star":"fa-star-o"' class="fa"></div>
+          <div [ngClass]='article.product.rating>4?"fa-star":"fa-star-o"' class="fa"></div>
         </div>
-        <button type="submit" class="col-7 my-auto btn btn-primary">Add To Cart</button>
+        <div class="col-md-8 card my-auto">{{article.product.price}}$</div>
+        <div class="col-md-8 card my-auto">{{article.product.description}}</div>
+        <div class="col-md-8 form-group form-check my-auto">
+          <label for="quantity">Quantity :</label>
+          <div class="input-group">
+            <input type="number" class="form-control" name="quantity" [(ngModel)]="article.quantity">
+            <div class="input-group-append">
+                <span class="input-group-text">/{{article.product.stock}}</span>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="col-6 my-auto btn btn-primary">Add To Cart</button>
       </form>
     </div>
   </div>
+</div>
 </main>
+<ng-template #isLoading>
+  <main *ngIf="loading; else notFound"  class="container d-flex flex-column justify-content-around">
+    <app-loading></app-loading>
+  </main>
+</ng-template>
+<ng-template #notFound>
+  <main class="container d-flex flex-column justify-content-around">
+    <h1>
+      Oops! That product doesn't exist.
+    </h1>
+    <div class="card col-4 align-self-center">
+      <a class="card-body" routerLink="/shopping" routerLinkActive="active">
+        <i class="card-img-top fa fa-arrow-left"></i>
+        back To Shop
+      </a>
+    </div>
+  </main>
+</ng-template>

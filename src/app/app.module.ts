@@ -14,6 +14,10 @@ import { PersistenceModule } from 'angular-persistence';
 import { ProductComponent } from './components/product/product.component';
 import { ProductListService } from './services/product-list.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 const appRoutes: Routes = [
   {
@@ -28,6 +32,15 @@ const appRoutes: Routes = [
   },{
     path:'product/:name',
     component:ProductComponent
+  },{
+    path:'contact',
+    component:ContactUsComponent
+  },{
+    path:'about',
+    component:AboutUsComponent
+  },{
+    path:'**', 
+    component:NotFoundComponent
   }
 ]
 
@@ -39,7 +52,11 @@ const appRoutes: Routes = [
     HomePageComponent,
     ShoppingComponent,
     ShoppingCartComponent,
-    ProductComponent
+    ProductComponent,
+    NotFoundComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
