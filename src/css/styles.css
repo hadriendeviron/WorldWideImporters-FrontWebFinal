@@ -1,10 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global s to this file, and also import other  files */
 body{
     margin: 0px;
+    background-image: url("../assets/images/abstract-antique-backdrop-163999.jpg");
+    background-color: beige;
 }
 main{
     min-height: 100vh;
     padding-top: 70px;
-    padding-bottom: 35px;
+    padding-bottom:50px;
 }
 
+#mainAbout{
+    padding-top: 54px;
+}
+
+#headerTitleFull{
+    visibility:collapse;
+}
+
+#aboutUsPicture{
+    height:40vh;
+}
+
+.carrousel-image{
+    height:200px;
+}
+
+.product-card{
+    height: 75vh;
+}
+
+#productPageImg{
+    max-height:75vh;
+}
+
+.shopping-image{
+    height:250px
+}
+
+.image-cart{
+    max-height: 100px;
+}
+
+#aboutUsJumbotron{
+    background-image: url("../assets/images/1479163855618-shutterstock-173610971.jpg")
+}
+
+
+@media screen and (min-width: 480px) {
+    #headerTitleFull{
+        visibility: visible;
+    }
+    #headerTitleShort{
+        visibility: collapse;
+    }
+}

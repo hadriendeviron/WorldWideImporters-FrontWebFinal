@@ -1,10 +1,11 @@
 <main>
-  <div *ngIf="shoppingCart?.length>0; else empty_cart" class='row container-fluid mt-4'>
-    <div class='col-md-8'>
+  <section *ngIf="shoppingCart?.length>0; else empty_cart" class='row container-fluid mt-4'>
+    <section class='col-md-8'>
       <form  (ngSubmit)="calculateCart()">
-        <div class="card my-2" *ngFor='let article of shoppingCart; let i=index'>
+        <article class="card my-2" *ngFor='let article of shoppingCart; let i=index'>
           <div class="card-body row">
-            <div class="col-md-2 my-auto"><img class="img-thumbnail" [src]='article.product.imagelink'></div>
+            <figure class="col-md-2 my-auto">
+              <img class="img-thumbnail image-cart" [src]='article.product.imagelink' [alt]='article.product.name'></figure>
             <div class="col-md-2 my-auto">{{article.product.name}}</div>
             <div class="col-md-2 my-auto">{{article.product.price}}$</div>
             <div class="col-md-2 my-auto"><input class="form-control" name="{{article.product.name}}" type="number" [(ngModel)]="article.quantity"/></div>
@@ -12,34 +13,37 @@
             <button type="button" class="col-md-2 close" (click)="remove(i)">&times;
             </button>
           </div>
-        </div>
+        </article>
         <div>
-          <button type="submit" class="btn btn-dark">Calculate Price</button>
+          <button type="submit" class="btn btn-success">Calculate Price</button>
         </div>
       </form>
-    </div>
-    <div class="col-md-4 card">
-      <div class="card-body">
-        <h2 class="card-title">Cart Summary</h2>
-        <div class="row mb-3">
-          <div class="col-md-8">Subtotal</div>
+    </section>
+    <section class="col-md-4 card">
+      <div class="card-body d-flex flex-column justify-content-around">
+        <h2 class="card-title my-2">Cart Summary</h2>
+        <div class="row my-2">
+          <label class="col-md-8">Subtotal</label>
           <div class="col-md-4">{{subtotal}}</div>
         </div>
-        <div class="row mb-3">
-          <div class="col-md-8">Shipping</div>
+        <div class="row my-2">
+          <label class="col-md-8">Shipping</label>
           <div class="col-md-4">{{shipping}}</div>
         </div>
-        <div class="row mb-3">
-          <div class="col-md-8">Tax</div>
+        <div class="row my-2">
+          <label class="col-md-8">Tax</label>
           <div class="col-md-4">{{tax}}</div>
         </div>
-        <div class="row mb-3">
-          <div class="col-md-8">Total</div>
+        <div class="row my-2">
+          <label class="col-md-8">Total</label>
           <div class="col-md-4">{{total}}</div>
         </div>
+        <div class="row my-2 justify-content-around">
+          <button class="align-self-center" (click)="checkOutCart()" class="btn btn-success">Check-Out</button>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </section>
   <ng-template template #empty_cart>
     <div class="container-fluid">
       <div class="card my-4 col-12">Your Shoppingcart is empty</div>

@@ -21,7 +21,10 @@ export class ShoppingCartService {
     }
 
     getShoppingCart(){
-      console.log("shop is "+typeof(this.shoppingCart));
       return this.shoppingCart;
+    }
+
+    emptyShoppingCart(){
+      this.shoppingCart=new Array<Article>();
     }
 }

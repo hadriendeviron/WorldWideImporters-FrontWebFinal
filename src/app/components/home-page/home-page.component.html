@@ -1,23 +1,25 @@
 <main class="d-flex flex-column justify-content-around">
-  <div *ngIf='!loading; else isLoading'>
+  <section *ngIf='!loading; else isLoading'>
     <ngb-carousel>
       <ng-template ngbSlide *ngFor="let item of items; let i = index">
-        <div class="carousel-item-container bg-primary">
+        <figure class="carousel-item-container">
           <a routerLink="/product/{{item.name}}" routerLinkActive="active">
-            <img class="img-fluid" style="height:200px;" [src]="item.imagelink" alt="Random first slide">
-            <div class="carousel-caption">
+            <img class="img-fluid" class="carrousel-image" [src]="item.imagelink" [alt]="item.name">
+            <figcaption class="carousel-caption">
               <h3>{{item.name}}</h3>
               <p>Only {{item.price}}$</p>
-            </div>
+            </figcaption>
           </a>
-        </div>
+        </figure>
       </ng-template>
     </ngb-carousel>
-  </div>
+  </section>
   <ng-template #isLoading>
     <app-loading></app-loading>
   </ng-template>
-  <div class="container-fluid">
-    <a class="btn btn-outline-dark" routerLink="/shopping" routerLinkActive="active">Go Shopping</a>
-  </div>
+  <section class="container-fluid">
+    <a class="btn btn-success btn-lg" routerLink="/shopping" routerLinkActive="active">
+      Go Shopping
+    </a>
+  </section>
 </main>

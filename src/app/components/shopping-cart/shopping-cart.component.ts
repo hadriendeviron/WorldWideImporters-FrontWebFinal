@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { Article } from '../../interfaces/article';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,7 +16,7 @@ export class ShoppingCartComponent implements OnInit {
   tax:number;
   total:Number;
 
-  constructor(private shoppingCartService:ShoppingCartService) { 
+  constructor(private shoppingCartService:ShoppingCartService, private router:Router) { 
 
   }
 
@@ -31,9 +32,14 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   calculateCart(){
-    this.subtotal=this.shoppingCart.map(a=>a.quantity*a.product.price).reduce((p1,p2)=>p1+p2);
+    this.subtotal=(Math.round(this.shoppingCart.map(a=>a.quantity*a.product.price).reduce((p1,p2)=>p1+p2)*100))/100;
     this.tax=(Math.round(this.subtotal*0.1*100))/100;
     this.total=(Math.round((this.subtotal+this.shipping+this.tax)*100))/100;
+  }
+
+  checkOutCart(){
+    this.shoppingCartService.emptyShoppingCart();
+    this.router.navigate(['/']);
   }
 
 }
