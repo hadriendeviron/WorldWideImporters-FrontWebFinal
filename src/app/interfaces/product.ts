@@ -7,5 +7,6 @@ export interface Product {
     "stock": string,
     "category": string,
     "subcategory": string,
-    "isFeatured":boolean
+    "isFeatured":boolean,
+    "cashedStock":number
 }

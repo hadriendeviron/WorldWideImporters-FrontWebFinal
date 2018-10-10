@@ -20,10 +20,8 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.loading=true;
-    console.log("start loading")
     this.route.paramMap.subscribe((params: ParamMap) => {
     this.productListService.get(params.get('name')).subscribe((response)=>{
-      console.log("stop loading")
       this.loading=false;
       this.article={product:response, quantity:0}
     
@@ -34,7 +32,9 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(){
-    if(this.article.quantity)this.cartService.addToShoppingCart(this.article)
+    if(this.article.quantity)this.cartService.addToShoppingCart(this.article);
+    this.productListService.removeFromCashedStock(this.article.product.name, this.article.quantity);
+    this.router.navigate(['/shopping']);
   }
 
 }

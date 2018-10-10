@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Contact} from '../../interfaces/contact'
 
 @Component({
   selector: 'app-contact-us',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactUsComponent implements OnInit {
 
-  constructor() { }
 
+  contact=new Contact('','','','');
+
+  constructor() { }
+  alertVisible=false;
   ngOnInit() {
+    
   }
 
+  send(){
+    this.alertVisible=true
+    setTimeout(()=>this.alertVisible=false,5000)
+  }
 }

@@ -8,7 +8,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ShoppingComponent } from './components/shopping/shopping.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, Validators } from '@angular/forms';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { PersistenceModule } from 'angular-persistence';
 import { ProductComponent } from './components/product/product.component';
@@ -18,6 +18,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { MaxValueDirective } from './directives/max-value.directive';
+import { IsPositiveIntegerDirective } from './directives/is-positive-integer.directive';
 
 const appRoutes: Routes = [
   {
@@ -56,7 +58,9 @@ const appRoutes: Routes = [
     NotFoundComponent,
     AboutUsComponent,
     ContactUsComponent,
-    LoadingComponent
+    LoadingComponent,
+    MaxValueDirective,
+    IsPositiveIntegerDirective
   ],
   imports: [
     BrowserModule,

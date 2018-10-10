@@ -21,14 +21,15 @@
           <div class="col-md-8 form-group form-check my-auto">
             <label for="quantity">Quantity :</label>
             <div class="input-group">
-              <input type="number" class="form-control" name="quantity" [(ngModel)]="article.quantity" [max]="article.product.stock">
+              <input type="number" class="form-control" name="quantity" [(ngModel)]="article.quantity" appIsPositiveInteger [appMaxValue]='article.product.cashedStock'>
               <div class="input-group-append">
-                <span class="input-group-text">/{{article.product.stock}}</span>
+                <span class="input-group-text">/{{article.product.cashedStock}}</span>
               </div>
-              <div *ngIf="myForm.controls[quantity]&&myForm.controls[quantity].invalid">Not enough stock available</div>
             </div>
+            <div *ngIf="myForm.controls.quantity&&myForm.controls.quantity.invalid&&myForm.controls.quantity.errors.isNotPositiveInteger" class="text-danger">Quantity must be a positive number</div>
+            <div *ngIf="myForm.controls.quantity&&myForm.controls.quantity.invalid&&myForm.controls.quantity.errors.IsTooBig" class="text-danger">Not enough stock available</div>
           </div>
-          <button type="submit" class="col-6 my-auto btn btn-success">Add To Cart</button>
+          <button type="submit" [disabled]="!myForm.valid" class="col-6 my-auto btn btn-success">Add To Cart</button>
         </form>
       </div>
     </section>

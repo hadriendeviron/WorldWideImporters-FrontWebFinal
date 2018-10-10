@@ -1,20 +1,30 @@
 <main>
   <h1>Contact Us</h1>
   <div>
-    <form class="mx-4">
+    <form #contactForm="ngForm" class="mx-4" (ngSubmit)="send()">
       <div class="form-group">
-        <label for="name">Name : </label><input class="form-control" type="text" id="name">
+        <label for="name">Name : </label>
+        <input class="form-control" name="name" type="text" id="name" [(ngModel)]="contact.name" required>
+        <div *ngIf="contactForm.controls.name&&contactForm.controls.name.invalid" class="text-danger">Name is Required</div>
       </div>
       <div class="form-group">
-        <label for="city">City : </label><input class="form-control" type="text" id="city">
+        <label for="city">City : </label><input class="form-control" name="city" type="text" id="city" [(ngModel)]="contact.city">
       </div>
       <div class="form-group">
-        <label for="email">Email : </label><input class="form-control" type="text" id="email">
+        <label for="email">Email : </label><input class="form-control" type="text" name="email" id="email" [(ngModel)]="contact.email" required email>
+        <div *ngIf="contactForm.controls.email&&contactForm.controls.email.invalid" class="text-danger">Email is invalid</div>
       </div>
       <div class="form-group">
-        <label for="message">Message : </label><textarea class="form-control" row="5" id="message"></textarea>
+        <label for="message">Message : </label><textarea class="form-control" row="5" name="message" id="message" [(ngModel)]="contact.message"
+        required></textarea>
+        <div *ngIf="contactForm.controls.message&&contactForm.controls.message.invalid" class="text-danger">Message cannot be empty</div>
       </div>
-      <button type="submit" class="btn btn-success">Send</button>
+      <button [disabled]="!contactForm.valid" type="submit" class="btn btn-success">Send</button>
     </form>
+    <p>
+    <ngb-alert type="success" *ngIf="alertVisible" (close)="alertVisible=false">
+      We appreciate your feed back. Thank u.
+    </ngb-alert>
+      </p>
   </div>
 </main>

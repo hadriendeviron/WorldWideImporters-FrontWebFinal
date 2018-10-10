@@ -1,21 +1,21 @@
 <main>
   <section *ngIf="shoppingCart?.length>0; else empty_cart" class='row container-fluid mt-4'>
     <section class='col-md-8'>
-      <form  (ngSubmit)="calculateCart()">
+      <form  #cartForm="ngForm" (ngSubmit)="calculateCart()">
         <article class="card my-2" *ngFor='let article of shoppingCart; let i=index'>
           <div class="card-body row">
             <figure class="col-md-2 my-auto">
               <img class="img-thumbnail image-cart" [src]='article.product.imagelink' [alt]='article.product.name'></figure>
             <div class="col-md-2 my-auto">{{article.product.name}}</div>
             <div class="col-md-2 my-auto">{{article.product.price}}$</div>
-            <div class="col-md-2 my-auto"><input class="form-control" name="{{article.product.name}}" type="number" [(ngModel)]="article.quantity"/></div>
+            <div class="col-md-2 my-auto"><input class="form-control" name="{{article.product.name}}" type="number" [(ngModel)]="article.quantity" appIsPositiveInteger [appMaxValue]="article.product.stock"/></div>
             <div class="col-md-2 my-auto">{{(article.product.price*article.quantity)|number:'1.0-2'}}$</div>
             <button type="button" class="col-md-2 close" (click)="remove(i)">&times;
             </button>
           </div>
         </article>
         <div>
-          <button type="submit" class="btn btn-success">Calculate Price</button>
+          <button type="submit" [disabled]="!cartForm.valid" class="btn btn-success">Calculate Price</button>
         </div>
       </form>
     </section>
