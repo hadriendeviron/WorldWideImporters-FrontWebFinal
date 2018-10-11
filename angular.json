@@ -23,11 +23,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/css/styles.css",
-              "src/css/bootstrap.min.css",
+              "src/assets/css/styles.css",
+              "src/assets/css/bootstrap.min.css",
               "node_modules/font-awesome/css/font-awesome.min.css"
             ],
             "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {

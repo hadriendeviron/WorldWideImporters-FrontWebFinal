@@ -1,7 +1,7 @@
 /* You can add global s to this file, and also import other  files */
 body{
     margin: 0px;
-    background-image: url("../assets/images/abstract-antique-backdrop-163999.jpg");
+    background-image: url("../images/abstract-antique-backdrop-163999.jpg");
     background-color: beige;
 }
 main{
@@ -43,8 +43,9 @@ main{
 }
 
 #aboutUsJumbotron{
-    background-image: url("../assets/images/1479163855618-shutterstock-173610971.jpg")
+    background-image: url("../images/1479163855618-shutterstock-173610971.jpg")
 }
+
 
 
 @media screen and (min-width: 480px) {
