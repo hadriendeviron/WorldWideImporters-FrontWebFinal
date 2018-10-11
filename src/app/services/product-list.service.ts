@@ -16,7 +16,7 @@ export class ProductListService {
 
   constructor(private http: HttpClient) { }
 
-  getAll =():Observable<Array<Category>>=>{
+  getAll ():Observable<Array<Category>>{
     if(!this.cashedResult){
       this.cashedResult=new Array<Category>();
       this.searchResult= this.http.get<Array<Category>>('https://webmppcapstone.blob.core.windows.net/data/itemsdata.json').pipe<Array<Category>>(map((response)=>{
@@ -51,16 +51,34 @@ export class ProductListService {
     return this.searchResult;
   }
 
-  get=(name):Observable<Product>=>{
+  get(name):Observable<Product>{
     return this.getAll().pipe(reduce((a,b:Category[]):Array<Product>=>
     {
       return a.concat(b.reduce<Array<Product>>((e:Array<Product>,f):Array<Product>=>e.concat(f.subcategories.reduce((c,d):Array<Product>=>c.concat(d.items),new Array<Product>())), new Array<Product>()))
     },new Array<Product>()),map(p=>p.find(pr=>pr.name===name)));
   }
 
-  removeFromCashedStock=(name, quantity)=>{
+  removeFromCashedStock(name, quantity){
     this.get(name).subscribe((o)=>{
       o.cashedStock-=quantity;
+    })
+  }
+
+  removeFromStock(name, quantity){
+    this.get(name).subscribe((o)=>{
+      o.cashedStock=(Number.parseInt(o.stock)-quantity);
+    })
+  }
+
+  emptyCashedStock(name){
+    this.get(name).subscribe((o)=>{
+      o.cashedStock=Number.parseInt(o.stock);
+    })
+  }
+
+  validateCashedStock(name){
+    this.get(name).subscribe((o)=>{
+      o.stock=o.cashedStock.toString();
     })
   }
   

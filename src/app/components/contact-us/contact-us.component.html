@@ -17,13 +17,13 @@
       <div class="form-group">
         <label for="message">Message : </label><textarea class="form-control" row="5" name="message" id="message" [(ngModel)]="contact.message"
         required></textarea>
-        <div *ngIf="contactForm.controls.message&&contactForm.controls.message.invalid" class="text-danger">Message cannot be empty</div>
+        <div *ngIf="contactForm.controls.message&&contactForm.controls.message.invalid" class="text-danger">Message can not be empty</div>
       </div>
       <button [disabled]="!contactForm.valid" type="submit" class="btn btn-success">Send</button>
     </form>
     <p>
-    <ngb-alert type="success" *ngIf="alertVisible" (close)="alertVisible=false">
-      We appreciate your feed back. Thank u.
+    <ngb-alert class="my-4" type="success" *ngIf="alertVisible" (close)="alertVisible=false">
+      We appreciate your feed back. Thank You.
     </ngb-alert>
       </p>
   </div>

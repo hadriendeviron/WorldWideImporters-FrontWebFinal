@@ -18,6 +18,7 @@ export class ContactUsComponent implements OnInit {
   }
 
   send(){
+    this.contact=new Contact('','','','');
     this.alertVisible=true
     setTimeout(()=>this.alertVisible=false,5000)
   }

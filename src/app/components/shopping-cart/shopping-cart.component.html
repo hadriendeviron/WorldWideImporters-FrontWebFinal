@@ -8,14 +8,18 @@
               <img class="img-thumbnail image-cart" [src]='article.product.imagelink' [alt]='article.product.name'></figure>
             <div class="col-md-2 my-auto">{{article.product.name}}</div>
             <div class="col-md-2 my-auto">{{article.product.price}}$</div>
-            <div class="col-md-2 my-auto"><input class="form-control" name="{{article.product.name}}" type="number" [(ngModel)]="article.quantity" appIsPositiveInteger [appMaxValue]="article.product.stock"/></div>
+            <div class="col-md-2 my-auto form-group">
+              <input class="form-control" name="{{article.product.name}}" type="number" [(ngModel)]="article.quantity" appIsPositiveInteger [appMaxValue]="article.product.stock"/>
+              <div *ngIf="cartForm.controls[article.product.name]&&cartForm.controls[article.product.name].invalid&&cartForm.controls[article.product.name].errors.isNotPositiveInteger" class="text-danger">Quantity must be a positive number</div>
+              <div *ngIf="cartForm.controls[article.product.name]&&cartForm.controls[article.product.name].invalid&&cartForm.controls[article.product.name].errors.IsTooBig" class="text-danger">Not enough stock available</div>
+            </div>
             <div class="col-md-2 my-auto">{{(article.product.price*article.quantity)|number:'1.0-2'}}$</div>
             <button type="button" class="col-md-2 close" (click)="remove(i)">&times;
             </button>
           </div>
         </article>
         <div>
-          <button type="submit" [disabled]="!cartForm.valid" class="btn btn-success">Calculate Price</button>
+          <button type="submit" [disabled]="!cartForm.valid" class="btn btn-success">Validate Changes</button>
         </div>
       </form>
     </section>
@@ -43,6 +47,9 @@
         </div>
       </div>
     </section>
+  <ngb-alert type="success" *ngIf="alertVisible" (close)="alertVisible=false">
+        Congratulations for your buying. You are going to be redirect to our payement page in a few seconds.
+  </ngb-alert>
   </section>
   <ng-template template #empty_cart>
     <div class="container-fluid">
