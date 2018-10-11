@@ -13,9 +13,9 @@ import { FilterSortProducts } from '../../interfaces/filter-sort-products';
 })
 export class ShoppingComponent implements OnInit {
 
-  private categories:Array<Category>;
-  private selectedSubcategory: Subcategory;
-  private displayedItems:Array<Product>;
+  categories:Array<Category>;
+  selectedSubcategory: Subcategory;
+  displayedItems:Array<Product>;
   filterSortProducts=new FilterSortProducts(false,false);
 
 
@@ -36,7 +36,6 @@ export class ShoppingComponent implements OnInit {
   }
 
   sortFilter(){
-    console.log(this.filterSortProducts)
     this.displayedItems=this.selectedSubcategory.items
     .filter(p=> (!this.filterSortProducts.maxPrice||p.price< this.filterSortProducts.maxPrice)&&(!this.filterSortProducts.stockedOnly||p.stock!=="0"));
     if(this.filterSortProducts.sortByPrice)

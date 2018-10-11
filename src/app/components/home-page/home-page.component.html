@@ -1,6 +1,6 @@
-<main class="d-flex flex-column justify-content-around">
+<main class="d-flex flex-column justify-content-between">
   <section *ngIf='!loading; else isLoading'>
-    <ngb-carousel>
+    <ngb-carousel id="carrouselContainer" class="mb-2 mx-4 card">
       <ng-template ngbSlide *ngFor="let item of items; let i = index">
         <figure class="carousel-item-container">
           <a routerLink="/product/{{item.name}}" routerLinkActive="active">

@@ -19,7 +19,6 @@ export class HomePageComponent implements OnInit {
     this.items=new Array<Product>();
     this.productsSearch.getAll().subscribe((response)=>{
       this.loading=false;
-      console.log("stopped loadeing")
       response.forEach(r=>r.subcategories.forEach(s=>this.items=this.items.concat(s.items.filter(i=>i.isFeatured))))
     })
   }
