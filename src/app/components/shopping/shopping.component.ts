@@ -26,6 +26,7 @@ export class ShoppingComponent implements OnInit {
   ngOnInit() {
     this.productListService.getAll().subscribe((response)=>{
       this.categories=response;
+      this.displayedItems=response[0].subcategories[0].items;
     })
     }
 

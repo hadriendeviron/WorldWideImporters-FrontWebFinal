@@ -24,8 +24,8 @@
               "src/web.config"
             ],
             "styles": [
-              "src/assets/css/styles.css",
               "src/assets/css/bootstrap.min.css",
+              "src/assets/css/styles.css",
               "node_modules/font-awesome/css/font-awesome.min.css"
             ],
             "scripts": [

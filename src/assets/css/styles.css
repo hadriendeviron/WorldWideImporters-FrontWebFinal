@@ -1,15 +1,16 @@
 /* You can add global s to this file, and also import other  files */
 body{
     margin: 0px;
-    background-image: url("../images/abstract-antique-backdrop-163999.jpg");
-    background-color: beige;
+    background-color:#dfdfdf;
 }
 main{
     min-height: 100vh;
     padding-top: 70px;
     padding-bottom:50px;
 }
-
+.card-body {
+    border-top:1px solid rgba(223,215,202,0.75);
+}
 #mainAbout{
     padding-top: 54px;
 }
@@ -23,7 +24,30 @@ main{
 }
 
 .carrousel-image{
-    height:200px;
+    height:250px;
+    width: auto;
+}
+
+
+.header .nav-link{
+    border-left: 1px solid black;
+}
+
+.header .navbar-brand{
+    border-right: 1px solid black;
+    
+}
+
+footer{
+    border-top: 1px solid black;
+}
+
+.header .navbar{
+    border-bottom: 1px solid black;
+}
+
+a{
+    color: black;
 }
 
 .product-card{
@@ -44,10 +68,6 @@ main{
 
 #aboutUsJumbotron{
     background-image: url("../images/1479163855618-shutterstock-173610971.jpg")
-}
-
-#carrouselContainer{
-    border-bottom: 2px solid #3E3F3A;
 }
 
 

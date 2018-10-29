@@ -1,16 +1,17 @@
-<main class="d-flex flex-column justify-content-between">
+<main class="d-flex flex-column justify-content-start">
   <section *ngIf='!loading; else isLoading'>
-    <ngb-carousel id="carrouselContainer" class="mb-2 mx-4 card">
+    <ngb-carousel id="carrouselContainer" class="mb-2 mx-4">
       <ng-template ngbSlide *ngFor="let item of items; let i = index">
-        <figure class="carousel-item-container">
+        <div class="carrousel-item-container d-flex justify-content-center">
+          <div class="card carrousel-card">
           <a routerLink="/product/{{item.name}}" routerLinkActive="active">
-            <img class="img-fluid" class="carrousel-image" [src]="item.imagelink" [alt]="item.name">
-            <figcaption class="carousel-caption">
-              <h3>{{item.name}}</h3>
-              <p>Only {{item.price}}$</p>
+            <img class="carrousel-image card-img" [src]="item.imagelink" [alt]="item.name">
+            <figcaption class="card-body">
+              <h3 class="bg-success text-white">{{item.name}} : Only {{item.price}}$</h3>
             </figcaption>
           </a>
-        </figure>
+        </div>
+      </div>
       </ng-template>
     </ngb-carousel>
   </section>
@@ -18,7 +19,7 @@
     <app-loading></app-loading>
   </ng-template>
   <section class="container-fluid">
-    <a class="btn btn-success btn-lg" routerLink="/shopping" routerLinkActive="active">
+    <a class="btn btn-outline-success btn-lg" routerLink="/shopping" routerLinkActive="active">
       Go Shopping
     </a>
   </section>
