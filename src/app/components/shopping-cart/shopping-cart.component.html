@@ -1,7 +1,7 @@
 <main>
   <section *ngIf="shoppingCart?.length>0; else empty_cart" class='row container-fluid mt-4'>
     <section class='col-md-8'>
-      <form  #cartForm="ngForm" (ngSubmit)="calculateCart()">
+      <form #cartForm="ngForm" (ngSubmit)="calculateCart()">
         <article class="card my-2" *ngFor='let article of shoppingCart; let i=index'>
           <div class="card-body row">
             <figure class="col-md-2 my-auto">
@@ -9,9 +9,12 @@
             <div class="col-md-2 my-auto">{{article.product.name}}</div>
             <div class="col-md-2 my-auto">{{article.product.price}}$</div>
             <div class="col-md-2 my-auto form-group">
-              <input class="form-control" name="{{article.product.name}}" type="number" [(ngModel)]="article.quantity" appIsPositiveInteger [appMaxValue]="article.product.stock"/>
-              <div *ngIf="cartForm.controls[article.product.name]&&cartForm.controls[article.product.name].invalid&&cartForm.controls[article.product.name].errors.isNotPositiveInteger" class="text-danger">Quantity must be a positive number</div>
-              <div *ngIf="cartForm.controls[article.product.name]&&cartForm.controls[article.product.name].invalid&&cartForm.controls[article.product.name].errors.IsTooBig" class="text-danger">Not enough stock available</div>
+              <input class="form-control" name="{{article.product.name}}" type="number" [(ngModel)]="article.quantity"
+                appIsPositiveInteger [appMaxValue]="article.product.stock" />
+              <div *ngIf="cartForm.controls[article.product.name]&&cartForm.controls[article.product.name].invalid&&cartForm.controls[article.product.name].errors.isNotPositiveInteger"
+                class="text-danger">Quantity must be a positive number</div>
+              <div *ngIf="cartForm.controls[article.product.name]&&cartForm.controls[article.product.name].invalid&&cartForm.controls[article.product.name].errors.IsTooBig"
+                class="text-danger">Not enough stock available</div>
             </div>
             <div class="col-md-2 my-auto">{{(article.product.price*article.quantity)|number:'1.0-2'}}$</div>
             <button type="button" class="col-md-2 close" (click)="remove(i)">&times;
@@ -23,33 +26,70 @@
         </div>
       </form>
     </section>
-    <section class="col-md-4 card">
-      <div class="card-body d-flex flex-column justify-content-around">
-        <h2 class="card-title my-2">Cart Summary</h2>
-        <div class="row my-2">
-          <label class="col-md-8">Subtotal</label>
-          <div class="col-md-4">{{subtotal}}</div>
-        </div>
-        <div class="row my-2">
-          <label class="col-md-8">Shipping</label>
-          <div class="col-md-4">{{shipping}}</div>
-        </div>
-        <div class="row my-2">
-          <label class="col-md-8">Tax</label>
-          <div class="col-md-4">{{tax}}</div>
-        </div>
-        <div class="row my-2">
-          <label class="col-md-8">Total</label>
-          <div class="col-md-4">{{total}}</div>
-        </div>
-        <div class="row my-2 justify-content-around">
-          <button class="align-self-center" (click)="checkOutCart()" class="btn btn-success">Check-Out</button>
-        </div>
-      </div>
+    <section class="col-md-4">
+      <form #shippingDetailsForm="ngForm" class="mx-4" (ngSubmit)="checkOutCart()">
+        <section class="card">
+          <div class="card-body d-flex flex-column justify-content-around">
+            <div class="form-group">
+              <label for="name">Name : </label>
+              <input class="form-control" placeholder="Enter your name" name="name" type="text" id="name" [(ngModel)]="shippingDetails.name"
+                required>
+              <div *ngIf="shippingDetailsForm.controls.name&&shippingDetailsForm.controls.name.invalid" class="text-danger">Name
+                is
+                Required</div>
+            </div>
+            <div class="form-group">
+              <label for="city">City : </label><input placeholder="Enter your city" class="form-control" name="city"
+                type="text" id="city" [(ngModel)]="shippingDetails.city" required>
+                <div *ngIf="shippingDetailsForm.controls.city&&shippingDetailsForm.controls.city.invalid" class="text-danger">City
+                    is
+                    Required</div>
+            </div>
+            <div class="form-group">
+              <label for="address">Address : </label><input placeholder="Enter your Address" class="form-control" type="text"
+                name="address" id="address" [(ngModel)]="shippingDetails.address" required>
+              <div *ngIf="shippingDetailsForm.controls.address&&shippingDetailsForm.controls.address.invalid" class="text-danger">Address
+                is
+                Required</div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone : </label><input placeholder="Enter your phone number" class="form-control" type="tel"
+                name="phone" id="phone" [(ngModel)]="shippingDetails.phone" required>
+              <div *ngIf="shippingDetailsForm.controls.phone&&shippingDetailsForm.controls.phone.invalid" class="text-danger">Phone
+                can not be empty</div>
+            </div>
+          </div>
+
+        </section>
+        <section class="card">
+          <div class="card-body d-flex flex-column justify-content-around">
+            <h2 class="card-title my-2">Cart Summary</h2>
+            <div class="row my-2">
+              <label class="col-md-8">Subtotal</label>
+              <div class="col-md-4">{{subtotal}}</div>
+            </div>
+            <div class="row my-2">
+              <label class="col-md-8">Shipping</label>
+              <div class="col-md-4">{{shipping}}</div>
+            </div>
+            <div class="row my-2">
+              <label class="col-md-8">Tax</label>
+              <div class="col-md-4">{{tax}}</div>
+            </div>
+            <div class="row my-2">
+              <label class="col-md-8">Total</label>
+              <div class="col-md-4">{{total}}</div>
+            </div>
+            <div class="row my-2 justify-content-around">
+              <button [disabled]="!shippingDetailsForm.valid" type="submit" class="align-self-center" class="btn btn-success">Check-Out</button>
+            </div>
+          </div>
+        </section>
+      </form>
     </section>
-  <ngb-alert type="success" *ngIf="alertVisible" (close)="alertVisible=false">
-        Congratulations for your buying. You are going to be redirect to our payement page in a few seconds.
-  </ngb-alert>
+    <ngb-alert type="success" *ngIf="alertVisible" (close)="alertVisible=false">
+      Congratulations {{shippingDetails.name}} for your buying. You are going to be redirect to our payement page in a few seconds, there you will be billed {{total}}$.
+    </ngb-alert>
   </section>
   <ng-template template #empty_cart>
     <div class="container-fluid">

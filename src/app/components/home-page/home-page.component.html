@@ -1,6 +1,6 @@
 <main class="d-flex flex-column justify-content-start">
   <section *ngIf='!loading; else isLoading'>
-    <ngb-carousel id="carrouselContainer" class="mb-2 mx-4">
+    <ngb-carousel #carousel id="carrouselContainer" [showNavigationIndicators]="false" class="mb-2 mx-4">
       <ng-template ngbSlide *ngFor="let item of items; let i = index">
         <div class="carrousel-item-container d-flex justify-content-center">
           <div class="card carrousel-card">
@@ -15,12 +15,21 @@
       </ng-template>
     </ngb-carousel>
   </section>
+  <section class="container-fluid">
+      <div class="btn-group">
+          <button type="button" class="btn btn-success" (click)="carouselCycle()">Activate Slide Show</button>
+          <button type="button" class="btn btn-success" (click)="carouselPause()">Disable Slide Show</button>
+      </div>
+  </section>
   <ng-template #isLoading>
     <app-loading></app-loading>
   </ng-template>
+  <section>
+    <h1 class="text-success">Welcome to World Wide Importers</h1>
+  </section>
   <section class="container-fluid">
     <a class="btn btn-outline-success btn-lg" routerLink="/shopping" routerLinkActive="active">
-      Go Shopping
+      Shop All
     </a>
   </section>
 </main>

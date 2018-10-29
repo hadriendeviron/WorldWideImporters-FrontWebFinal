@@ -3,6 +3,7 @@ import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { Article } from '../../interfaces/article';
 import { Router } from '@angular/router';
 import { ProductListService } from '../../services/product-list.service';
+import { ShippingDetails } from 'src/app/interfaces/shipping-details';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -17,6 +18,7 @@ export class ShoppingCartComponent implements OnInit {
   tax:number;
   total:Number;
   alertVisible: boolean;
+  shippingDetails=new ShippingDetails('','','','')
 
   constructor(private shoppingCartService:ShoppingCartService, private router:Router, private productListService:ProductListService) { 
 

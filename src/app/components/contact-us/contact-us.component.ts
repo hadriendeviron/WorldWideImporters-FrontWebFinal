@@ -18,8 +18,12 @@ export class ContactUsComponent implements OnInit {
   }
 
   send(){
-    this.contact=new Contact('','','','');
+
     this.alertVisible=true
-    setTimeout(()=>this.alertVisible=false,5000)
+    setTimeout(()=>
+    {
+      this.alertVisible=false
+      this.contact=new Contact('','','','');
+    },5000)
   }
 }
